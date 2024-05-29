@@ -1,35 +1,29 @@
 const axios = require('axios');
 
 module.exports = {
-    name: 'mistral',
-    description: 'An AI command powered by Neuronspike, modified by joshua apostol',
-    aliases: ['Mistral'],
-    cooldown: 3,
-    nashPrefix: false,
-    execute: async (api, event, args) => {
-        const input = args.join(' ');
+  name: "mistral",
+  author: "Bruno", // API by hazey
+  description: 'Query Mistral for a response.',
+  nashPrefix: true,
+  execute: async function ({ api, event, args }) {
+    try {
+      if (!args[0]) {
+        return api.sendMessage("Please provide a prompt for Mistral.", event.threadID);
+      }
 
-        if (!input) {
-            api.sendMessage(
-                `Hello there!\n\nI am an AI developed by Bruno Rakotomalala. I am here to assist you with any questions or tasks you may have.\n\nUsage: mistral [your question]`,
-                event.threadID,
-                event.messageID
-            );
-            return;
-        }
+      const prompt = encodeURIComponent(args.join(" "));
+      const apiUrl = `https://hashier-api-groq.vercel.app/api/groq/mistral?ask=${prompt}`;
 
-        api.sendMessage(`Processing your request...`, event.threadID, event.messageID);
+      const response = await axios.get(apiUrl);
 
-        try {
-            const { data } = await axios.get(`https://hashier-api-groq.vercel.app/api/groq/mistral?ask=${encodeURIComponent(input)}`);
-            const response = data.content;
-
-            const finalResponse = `✩𝐉𝐎𝐒𝐇𝐁𝐎𝐓✩\n\n${response}\n\nMAKE YOUR OWN BOT HERE\n`;
-            api.sendMessage(finalResponse, event.threadID, event.messageID);
-        } catch (error) {
-            api.sendMessage('An error occurred while processing your request, please try sending your question again', event.threadID, event.messageID);
-            console.error(error);
-        }
-    },
+      if (response.data && response.data.response) {
+        api.sendMessage(response.data.response, event.threadID);
+      } else {
+        api.sendMessage("Unable to get a response from Mistral.", event.threadID);
+      }
+    } catch (error) {
+      console.error('Error making Mistral API request:', error.message);
+      api.sendMessage("An error occurred while processing your request.", event.threadID);
+    }
+  }
 };
-

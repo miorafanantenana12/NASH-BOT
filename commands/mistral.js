@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 module.exports = {
-    name: 'mistrale',
+    name: 'mistral',
     description: 'An AI command powered by Neuronspike, modified by joshua apostol',
-    aliases: ['Mistrale'],
+    aliases: ['Mistral'],
     cooldown: 3,
     nashPrefix: false,
     execute: async (api, event, args) => {

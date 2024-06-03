@@ -24,7 +24,7 @@ module.exports = {
             const { data } = await axios.get(`https://api.easy-api.online/v1/globalgpt?q=${encodeURIComponent(input)}`);
             const response = data.content;
 
-            const finalResponse = `✩𝐉𝐎𝐒𝐇𝐁𝐎𝐓✩\n\n${response}\n\nMAKE YOUR OWN BOT HERE\n`;
+            const finalResponse = `❤️🇧 🇷 🇺 🇳 🇴 ❤️\n\n${response}\n\nMAKE YOUR OWN BOT HERE\n`;
             api.sendMessage(finalResponse, event.threadID, event.messageID);
         } catch (error) {
             api.sendMessage('An error occurred while processing your request, please try sending your question again', event.threadID, event.messageID);

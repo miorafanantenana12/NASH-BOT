@@ -32,7 +32,7 @@ module.exports = {
         api.sendMessage("Processing your request...", event.threadID, event.messageID);
 
         try {
-            const { data } = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
+            const { data } = await axios.get(`https://liaspark.chatbotcommunity.ltd/@LianeAPI_Reworks/api/claire/?ask=${encodeURIComponent(prompt)}`);
             const answer = data.answer;
 
             api.sendMessage(`💖 CAPUCINE \n______________________\n${answer}\n_______________________ \n🎯 MIROR EDGE 🎯`, event.threadID, event.messageID);

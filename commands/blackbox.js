@@ -22,10 +22,15 @@ module.exports = {
 
         try {
             const { data } = await axios.get(`https://api.easy-api.online/api/blackbox?query=${encodeURIComponent(input)}`);
+            console.log('API Response:', data); // Ajoutez cette ligne pour inspecter la réponse de l'API
             const response = data.result;
 
-            const finalResponse = `🔍 Blackbox says: ${response}`;
-            api.sendMessage(finalResponse, event.threadID, event.messageID);
+            if (response) {
+                const finalResponse = `🔍 Blackbox says: ${response}`;
+                api.sendMessage(finalResponse, event.threadID, event.messageID);
+            } else {
+                api.sendMessage('No response received from the Blackbox API', event.threadID, event.messageID);
+            }
         } catch (error) {
             api.sendMessage('An error occurred while processing your request, please try sending your question again', event.threadID, event.messageID);
             console.error(error);

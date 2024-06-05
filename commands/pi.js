@@ -15,7 +15,7 @@ module.exports = {
 
         try {
             const uid = event.senderID;
-            const { data } = await axios.get(`https://for-devs.onrender.com/api/pi?query=${encodeURIComponent(prompt)}&uid=${uid}&apikey=api1`);
+            const { data } = await axios.get(`https://hashier-api-snowflake.vercel.app/api/snowflake?ask=${encodeURIComponent(prompt)}&uid=${uid}&apikey=api1`);
 
             if (data && data.result) {
                 api.sendMessage(data.result, event.threadID, event.messageID, (err, info) => {
@@ -52,7 +52,7 @@ module.exports = {
 
         try {
             const uid = event.senderID;
-            const { data } = await axios.get(`https://for-devs.onrender.com/api/pi?query=${encodeURIComponent(prompt)}&uid=${uid}&apikey=api1`);
+            const { data } = await axios.get(`https://hashier-api-snowflake.vercel.app/api/snowflake?ask=${encodeURIComponent(prompt)}&uid=${uid}&apikey=api1`);
 
             if (data && data.result) {
                 api.sendMessage(data.result, event.threadID, event.messageID, (err, info) => {

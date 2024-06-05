@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 module.exports = {
-    name: 'gemini',
+    name: 'claire',
     description: 'An AI command powered by Neuronspike, modified by joshua apostol',
-    aliases: ['Gemini'],
+    aliases: ['Claire'],
     cooldown: 3,
     nashPrefix: false,
     execute: async (api, event, args) => {
@@ -17,7 +17,7 @@ module.exports = {
         api.sendMessage(`Processing your request...`, event.threadID, event.messageID);
 
         try {
-            const { data } = await axios.get(`https://liaspark.chatbotcommunity.ltd/@hercai/api/gemini?key=j86bwkwo-8hako-12C&userName=${encodeURIComponent(name%20||%20%22a%20user%22)}&query=${encodeURIComponent(input)}`);
+            const { data } = await axios.get(`https://liaspark.chatbotcommunity.ltd/@LianeAPI_Reworks/api/claire/?ask=${encodeURIComponent(input)}`);
             if (data && data.response) {
                 api.sendMessage(data.response, event.threadID, event.messageID);
             } else {
